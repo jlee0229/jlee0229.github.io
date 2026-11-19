@@ -1,0 +1,18 @@
+:root{--bg:#fbfbfa;--fg:#1c1c1e;--mut:#6b6b70;--line:#e4e4e8;--link:#1d4ed8;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#161618;--fg:#ececf0;--mut:#9a9aa2;--line:#2e2e34;--link:#8fb3ff;--card:#1d1d20}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 Georgia,"Iowan Old Style",serif}
+main{max-width:42rem;margin:0 auto;padding:2.5rem 16px 5rem}
+nav{font:14px system-ui,sans-serif;display:flex;gap:1.2rem;margin-bottom:2.5rem}
+nav a{color:var(--mut);text-decoration:none} nav a:hover{color:var(--fg)}
+h1{font-size:2rem;line-height:1.2;margin:.2em 0 .4em} h2{font-size:1.3rem;margin:2.2em 0 .5em}
+a{color:var(--link)} .meta{font:14px system-ui,sans-serif;color:var(--mut)}
+.lede{font-size:1.1rem;color:var(--fg)}
+.card{display:block;padding:1rem 1.2rem;margin:1rem 0;background:var(--card);border:1px solid var(--line);border-radius:8px;text-decoration:none;color:inherit}
+.card:hover{border-color:var(--mut)} .card h3{margin:0 0 .2em;font-size:1.1rem}
+.card p{margin:0;color:var(--mut);font-size:.95rem}
+.tag{font:12px system-ui,sans-serif;border:1px solid var(--line);border-radius:99px;padding:1px 9px;color:var(--mut);margin-right:6px}
+figure{margin:1.6rem 0} figure img{width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+figcaption{font:14px/1.5 system-ui,sans-serif;color:var(--mut);margin-top:.5rem}
+.post{font:12px system-ui,sans-serif;background:var(--line);padding:1px 7px;border-radius:4px;margin-left:4px;color:var(--mut);vertical-align:middle}
+ol li{margin:.7em 0}

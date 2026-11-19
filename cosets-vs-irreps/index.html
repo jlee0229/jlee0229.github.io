@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cosets vs irreps</title><meta name="description" content="Pre-registered test of whether MLPs trained on group multiplication organize neurons by cosets or irreps."><link rel="stylesheet" href="../style.css"></head>
+<body><main>
+<nav><a href="../">Home</a><a href="./">Cosets vs irreps</a><a href="https://github.com/jlee0229/cosets-vs-irreps">Code</a></nav>
+<p class="meta"><span class="tag">done</span><span class="tag">pre-registered</span></p>
+<h1>Cosets vs irreps</h1>
+<p class="lede">When small networks learn a group's multiplication table, do their neurons organize around cosets of subgroups (Stander et al.) or around irreducible representations (Chughtai et al.)? In the models I tested, around cosets.</p>
+
+<h2>Main results</h2>
+<p>I analyzed 89 one-hidden-layer MLPs on 7 groups: 50 on S5, 8 on the dihedral groups D59 and D61, and 31 on the affine groups Aff(Z<sub>n</sub>) for n = 11, 15, 16, 21. Pre-registrations were frozen first. The test was whether neurons are organized by cosets of subgroups or by a single-frequency irrep basis.</p>
+<ol>
+<li><b>Neurons are organized by cosets.</b> On S5, all 50 models put at least 90% of their pre-activation energy in coset-aligned neurons (median 100%); untrained networks score 0. On the affine groups, 3 of the 4 testable blocks passed as plain cosets and the fourth (n = 21) was unclear. The single-frequency basis never carried a majority in any block, even though it solves the task with less redundancy.</li>
+<li><b>Direct products get factored.</b> Aff(Z<sub>15</sub>) and Aff(Z<sub>21</sub>) split into smaller groups; every model solves the factors separately and leaves the joint block empty.</li>
+<li><b>The coset circuit sets the width threshold</b> <span class="post">post hoc</span> On Aff(F<sub>p</sub>) the hand-built coset circuit needs about p² neurons, and grokking starts near that width. At p = 11, 0 of 3 seeds grok at width 100 and 3 of 3 at width 140. At p = 13, all 6 runs fail at width 128 and every run at 160 or above succeeds.</li>
+<li><b>ReLU matters</b> <span class="post">post hoc</span> With |t| the networks build the same coset circuit. With a quadratic activation the coset preference disappears, and the networks do not switch to the single-frequency basis either.</li>
+</ol>
+
+<figure>
+<img src="../figures/width_threshold.svg" alt="Fraction of seeds that grok versus width over p squared, for p = 7, 11, 13">
+<figcaption>Fraction of seeds that grok within 100k epochs, by hidden width over p². Aff(F<sub>7</sub>) uses 60% of pairs for training; the 40% column is data-limited. Cells are small (1 to 6 seeds; hover for counts), and p = 13 has one seed at most widths. The p = 11 width 128 and p = 13 widths 128 and 256 come from earlier runs recorded in the width-grid notes. Post hoc, not pre-registered.</figcaption>
+</figure>
+
+<h2>What failed or is open</h2>
+<p>Aff(Z<sub>13</sub>) never learns at width 128. The S5 memorizer control was the wrong null, which I recorded as a design error. Two pre-registered predictions on Aff(Z<sub>15</sub>) were inconclusive. All models are one-hidden-layer ReLU MLPs at width 128 under two optimizers, so the preference for cosets is a claim about this regime. The repository was pushed as a single commit after the work was done, so git history does not show the freeze dates; the dates inside each pre-registration file are the only record of ordering.</p>
+
+<h2>Read more</h2>
+<ul>
+<li><a href="writeup.html">Full write-up (S5 and dihedral)</a></li>
+<li><a href="https://github.com/jlee0229/cosets-vs-irreps">Code, models and reports</a></li>
+<li><a href="https://github.com/jlee0229/cosets-vs-irreps/blob/main/results/affine/width_grid.md">Width grid notes</a> · <a href="https://github.com/jlee0229/cosets-vs-irreps/blob/main/results/affine/activation.md">Activation notes</a></li>
+</ul>
+</main></body></html>
