@@ -5,64 +5,97 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Jaeho Lee</title>
 <meta name="description" content="Jaeho Lee: the affine group Aff(Z_n), panmagic permutations, and what small networks learn about finite groups.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="page">
+<div class="wrap">
 
-<header class="site-header">
-<h1 class="site-name">Jaeho Lee</h1>
+<header class="topbar">
+<nav aria-label="Sections">
+<a href="#news">News</a>
+<a href="#research">Research</a>
+<a href="#projects">Projects</a>
+</nav>
 </header>
 
 <main>
-<p>I'm a first-year at MIT. I work on the affine group Aff(ℤ<sub><i>n</i></sub>) and its connection to panmagic permutations, and on what small neural networks learn when trained to multiply in a finite group.</p>
-<p>Email: <a href="mailto:jlee229@mit.edu">jlee229@mit.edu</a></p>
+<section class="intro">
+<div class="prose">
+<h1>Jaeho Lee</h1>
+<p>I'm a first-year at MIT. I work on the affine group Aff(ℤ<sub><i>n</i></sub>) and panmagic permutations, and on what small neural networks learn when you train them to multiply in a finite group.</p>
+<p>This year I'm doing a UROP in the Fiete Lab. Before MIT I wrote two papers with Sergiy Koshkin, listed below, and spent a summer at RSI working on quadratic residues and pseudorandomness.</p>
+<p>I also like building things. The most recent is <a href="https://playhivemusic.com">HiveMusic</a>, which turns a room of phones into one speaker.</p>
+</div>
+<aside class="contact">
+<!-- When there's a photo: <img src="figures/photo.jpg" alt="Jaeho Lee" width="200" height="250" style="display:block;width:200px;height:auto;margin:-66px 0 16px"> -->
+<div>Cambridge, MA</div>
+<div>jlee229 [at] mit [dot] edu</div>
+<div><a href="https://github.com/jlee0229">GitHub</a><a href="https://www.linkedin.com/in/jaeho-lee-5446b23a4">LinkedIn</a></div>
+</aside>
+</section>
 
-<h2>Papers</h2>
-<ul class="list">
-<li class="row">
-<span class="date">2025</span>
+<h2 id="news">News</h2>
+<ul class="news">
+<li><time datetime="2026-09">Sep 2026</time><span>Built <a href="https://playhivemusic.com">HiveMusic</a> at HackMIT with Frank Lucci.</span></li>
+<li><time datetime="2026-09">Sep 2026</time><span>Posted <a href="cosets-vs-irreps/">cosets vs irreps</a>, a pre-registered study of 89 small networks on 7 finite groups.</span></li>
+<li><time datetime="2026-09">Sep 2026</time><span>Started a UROP in the Fiete Lab.</span></li>
+</ul>
+
+<h2 id="research">Research</h2>
+<ul class="items">
+<li>
+<div class="thumb"><img src="figures/width_threshold.svg" alt="Chart: fraction of seeds that grok against hidden width over p squared"></div>
 <div>
-<a href="https://www.sciencedirect.com/science/article/pii/S0012365X25000755">N-ary groups of panmagic permutations from the Post coset theorem</a>
-<div class="sub">With Sergiy Koshkin. <i>Discrete Mathematics</i>.</div>
-<div class="links"><a href="https://arxiv.org/abs/2606.23735">arXiv</a></div>
+<a class="item-title" href="cosets-vs-irreps/">Cosets vs irreps</a>
+<div class="authors"><b>Jaeho Lee</b></div>
+<div class="venue">Pre-registered experiment, 2026</div>
+<p>In 89 one-hidden-layer MLPs trained on 7 finite groups, neurons mostly organize by subgroup cosets, not by irreducible representations.</p>
+<div class="links"><a href="cosets-vs-irreps/">page</a><a href="cosets-vs-irreps/writeup.html">write-up</a><a href="https://github.com/jlee0229/cosets-vs-irreps">code</a></div>
 </div>
 </li>
-<li class="row">
-<span class="date">2025</span>
+<li>
+<div class="thumb"><img src="figures/perm7.svg" alt="7 by 7 permutation matrix of x maps to 2x plus 1 mod 7, a panmagic permutation"></div>
 <div>
-<a href="https://arxiv.org/abs/2606.22221">Panmagic permutations and N-ary groups</a>
-<div class="sub">With Sergiy Koshkin. <i>PUMP Journal of Undergraduate Research</i>.</div>
+<a class="item-title" href="https://www.sciencedirect.com/science/article/pii/S0012365X25000755">N-ary groups of panmagic permutations from the Post coset theorem</a>
+<div class="authors">Sergiy Koshkin, <b>Jaeho Lee</b></div>
+<div class="venue">Discrete Mathematics, 2025</div>
+<p>The Post covers of N-ary groups of panmagic permutations are subgroups of Aff(ℤ<sub><i>n</i></sub>), namely the permutations that keep a panmagic permutation panmagic under multiplication.</p>
+<div class="links"><a href="https://arxiv.org/abs/2606.23735">arXiv</a><a href="https://www.sciencedirect.com/science/article/pii/S0012365X25000755">journal</a></div>
+</div>
+</li>
+<li>
+<div class="thumb"><img src="figures/perm11.svg" alt="11 by 11 permutation matrix of x maps to 3x plus 2 mod 11, a panmagic permutation"></div>
+<div>
+<a class="item-title" href="https://arxiv.org/abs/2606.22221">Panmagic permutations and N-ary groups</a>
+<div class="authors">Sergiy Koshkin, <b>Jaeho Lee</b></div>
+<div class="venue">PUMP Journal of Undergraduate Research 8 (2025), 195–212</div>
+<p>Panmagic permutations are the same objects as modular n-queens solutions. This paper studies the N-ary groups they form.</p>
+<div class="links"><a href="https://arxiv.org/abs/2606.22221">arXiv</a></div>
 </div>
 </li>
 </ul>
 
-<h2>Experiments</h2>
-<ul class="list">
-<li class="row">
-<span class="date">2026</span>
+<h2 id="projects">Projects</h2>
+<ul class="items">
+<li>
+<div class="thumb shot"><img src="figures/hivemusic.jpg" alt="HiveMusic home page with Host a hive and Join buttons"></div>
 <div>
-<a href="cosets-vs-irreps/">Cosets vs irreps</a>
-<div class="sub">Do small networks trained on a finite group organize their neurons by subgroup cosets or by irreducible representations? Across 89 models on 7 groups, mostly cosets.</div>
-<div class="links"><a href="https://github.com/jlee0229/cosets-vs-irreps">Code</a></div>
+<a class="item-title" href="https://playhivemusic.com">HiveMusic</a>
+<div class="authors">Frank Lucci, <b>Jaeho Lee</b></div>
+<div class="venue">HackMIT, 2026</div>
+<p>Guests scan a QR code and their phones play as one speaker. The phones sync clocks in the browser and calibrate latency with the mic, so each one can play a different stem of the same song.</p>
+<div class="links"><a href="https://playhivemusic.com">site</a><a href="https://github.com/piar1243/hive-music-official">code</a></div>
 </div>
 </li>
 </ul>
 
-<!-- Writing lives on Substack (or similar). When there's a post worth pointing to, add:
-<h2>Writing</h2>
-<ul class="list">
-<li class="row"><span class="date">2026</span><a href="https://EXTERNAL-POST-URL">Post title</a></li>
+<!-- Writing lives on Substack. When there's a post worth pointing to, add a "Writing" nav link and:
+<h2 id="writing">Writing</h2>
+<ul class="news">
+<li><time datetime="2027-01">Jan 2027</time><a href="https://EXTERNAL-POST-URL">Post title</a></li>
 </ul>
-and a "Writing" link to the footer pointing at the publication's home page. -->
+-->
 </main>
-
-<footer class="site-footer">
-<nav aria-label="Elsewhere"><a href="https://github.com/jlee0229">GitHub</a><a href="https://www.linkedin.com/in/jaeho-lee-5446b23a4">LinkedIn</a></nav>
-</footer>
 
 </div>
 </body>
