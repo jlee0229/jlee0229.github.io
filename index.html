@@ -1,13 +1,55 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Jaeho Lee · Research</title><meta name="description" content="Mechanistic interpretability experiments: how small networks learn group structure."><link rel="stylesheet" href="style.css"></head>
-<body><main>
-<nav><a href="./">Home</a><a href="cosets-vs-irreps/">Cosets vs irreps</a><a href="https://github.com/jlee0229">GitHub</a></nav>
-<h1>Jaeho Lee</h1>
-<p class="lede">I run small, pre-registered mechanistic interpretability experiments. Right now: how tiny networks that learn a group's multiplication table organize their neurons.</p>
-<h2>Experiments</h2>
-<a class="card" href="cosets-vs-irreps/"><h3>Cosets vs irreps</h3><p>Do one-hidden-layer MLPs on finite groups organize neurons by subgroup cosets or by irreducible representations? 89 models, 7 groups. Done; follow-ups ongoing.</p><p style="margin-top:.5rem"><span class="tag">done</span><span class="tag">pre-registered</span></p></a>
-<a class="card" href="#"><h3>Weight-space reading</h3><p>Replicating the weight-space-programming idea on our group MLPs, with controls. Pilot not run yet.</p><p style="margin-top:.5rem"><span class="tag">planned</span></p></a>
-<a class="card" href="#"><h3>Weight-sparse variant (Gao et al.)</h3><p>Does sparsity push the network toward a different solution, or only make the coset one easier to read? Not run yet.</p><p style="margin-top:.5rem"><span class="tag">planned</span></p></a>
-<h2>How this site works</h2>
-<p class="meta">Each experiment gets a page with the result first, the figure, then links to the full report and the code. Planned experiments are listed as planned. Code and data stay in the GitHub repos; this site only summarizes.</p>
-</main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jaeho Lee</title>
+<meta name="description" content="Jaeho Lee: finite groups, panmagic permutations, and small interpretability experiments on networks that learn group multiplication.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="home">
+<div class="page">
+
+<header class="site-header">
+<h1 class="site-name">Jaeho Lee</h1>
+<nav aria-label="Main">
+<a href="/research/">Research</a>
+<a href="/writing/">Writing</a>
+<a href="https://github.com/jlee0229">GitHub</a>
+</nav>
+</header>
+
+<main>
+<p>I'm a first-year at MIT. Most of my math is about the affine group Aff(ℤ<sub><i>n</i></sub>): its conjugacy classes, its representations, and its connection to panmagic permutations.</p>
+<p>I also run small, pre-registered interpretability experiments. I train a tiny network to multiply in a finite group, then check whether its neurons line up with subgroup cosets or with irreducible representations. So far, mostly cosets.</p>
+<p>Before MIT, I worked with Sergiy Koshkin on <i>n</i>-ary groups of panmagic permutations and spent summer 2025 at RSI.</p>
+<p>The best way to reach me is email: <a href="mailto:jlee229@mit.edu">jlee229@mit.edu</a>.</p>
+
+<h2>Research</h2>
+<ul class="list">
+<li class="row"><span class="date">2025</span><span><a href="https://www.sciencedirect.com/science/article/pii/S0012365X25000755">N-ary groups of panmagic permutations from the Post coset theorem</a>. With Sergiy Koshkin. <i>Discrete Mathematics</i>.</span></li>
+<li class="row"><span class="date">2025</span><span><a href="https://arxiv.org/abs/2606.22221">Panmagic permutations and N-ary groups</a>. With Sergiy Koshkin. <i>PUMP Journal of Undergraduate Research</i>.</span></li>
+<li class="row"><span class="date">2026</span><span><a href="/cosets-vs-irreps/">Cosets vs irreps</a>. 89 small networks on 7 finite groups. Experiment, write-up and code.</span></li>
+</ul>
+<p class="indent">More on the <a href="/research/">research page</a>.</p>
+
+<!-- Writing: once there are posts, list the three newest here, same markup as research:
+<h2>Writing</h2>
+<ul class="list">
+<li class="row"><span class="date">Nov 2026</span><a href="/writing/slug/">Post title</a></li>
+</ul>
+<p class="indent">Everything else is on the <a href="/writing/">writing page</a>.</p>
+-->
+</main>
+
+<footer class="site-footer">
+<nav aria-label="Elsewhere"><a href="mailto:jlee229@mit.edu">Email</a><a href="https://github.com/jlee0229">GitHub</a><a href="https://www.linkedin.com/in/jaeho-lee-5446b23a4">LinkedIn</a></nav>
+<span>Updated 18 November 2026</span>
+</footer>
+
+</div>
+</body>
+</html>
