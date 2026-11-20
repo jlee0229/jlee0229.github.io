@@ -8,7 +8,7 @@ Design source: option A ("Panmagic motif") on the "Jaeho Lee — site options" D
 
 - `index.html`: the whole site. Top bar (name, section links), intro (bio on the left; the 7x7 panmagic matrix x -> 2x+1 mod 7 with its caption and the contact block on the right), then News, Research, Projects.
 - `cosets-vs-irreps/`: experiment page (URL is linked from the resume; keep it). `writeup.html` is a standalone report with its own older styling.
-- `figures/`: thumbnails and figures. `width_threshold.svg` (from `build_figures.py`), `perm7.svg` (x -> 2x+1 mod 7), `perm11.svg` (x -> 3x+2 mod 11), `hivemusic.jpg` and `humanpath.jpg` (390x844 phone screenshots: HiveMusic's home screen, and Humanpath's sample walk from the State House to the Public Garden). Both apps are made for phones, so project thumbnails are portrait phone screenshots in `.thumb.phone`, captured at 390x844.
+- `figures/`: thumbnails and figures. `width_threshold.svg` (from `build_figures.py`), `perm7.svg` (x -> 2x+1 mod 7), `perm11.svg` (x -> 3x+2 mod 11), `hivemusic.jpg` (screenshot of playhivemusic.com), `humanpath.jpg` (the Humanpath app's sample walk, Boston State House to the Public Garden).
 - `style.css`: the only stylesheet. System font stack, one accent (`--accent`, crimson; lighter in dark mode), dark mode through `prefers-color-scheme`. Section headings get the accent square and hairline rule from CSS, so new `<h2>`s need no extra markup.
 
 ## What goes on the site
@@ -32,7 +32,7 @@ Be selective. Published or accepted papers, finished experiments, finished proje
 
 ## No AI tells
 
-- Visual: no cards, pill badges, shadows, gradients, rounded boxes (the one exception is phone screenshots, which keep a phone's corner radius), icon rows, emoji, uppercase letter-spaced labels, numbered eyebrows, left-border callouts, hero taglines, or decorative stock images. Thumbnails are real figures from the work. No logo mark next to the name.
+- Visual: no cards, pill badges, shadows, gradients, rounded boxes, icon rows, emoji, uppercase letter-spaced labels, numbered eyebrows, left-border callouts, hero taglines, or decorative stock images. Thumbnails are real figures from the work. No logo mark next to the name.
 - Copy: first person, plain, specific. No em dashes. No forced groups of three, no "Most recently:" style fragments, no inflated words (pivotal, showcase, passionate, leverage). Active voice. Lead with the result; say what failed. Say "research in the Fiete Lab", not "UROP".
 - Headings and nav in sentence case.
 
