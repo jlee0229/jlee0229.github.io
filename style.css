@@ -58,8 +58,9 @@ main h2::after{content:"";flex:1;border-top:1px solid var(--rule)}
 .items>li{display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:28px;row-gap:12px}
 .thumb{width:200px;height:125px;border:1px solid var(--rule);background:#ffffff;overflow:hidden}
 .thumb img{display:block;width:100%;height:100%;object-fit:contain}
-.thumb.shot{background:#0f1115}
-.thumb.shot img{object-fit:cover}
+/* projects are phone apps: show a portrait phone screenshot with the phone's own corner radius */
+.thumb.phone{width:116px;height:auto;aspect-ratio:auto;justify-self:center;border-color:var(--frame);border-radius:14px;background:#0f1115}
+.thumb.phone img{height:auto}
 .item-title{font-size:17.5px;font-weight:600;line-height:1.4}
 a.item-title{text-decoration:none}
 a.item-title:hover{text-decoration:underline}
@@ -99,5 +100,6 @@ pre code{font-size:inherit;background:none;padding:0}
   .news li{grid-template-columns:minmax(0,1fr);row-gap:0}
   .items>li{grid-template-columns:minmax(0,1fr)}
   .thumb{width:100%;max-width:340px;height:auto;aspect-ratio:8/5}
+  .thumb.phone{width:150px;justify-self:start}
   .post h1{font-size:30px}
 }
