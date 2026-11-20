@@ -1,18 +1,103 @@
-:root{--bg:#fbfbfa;--fg:#1c1c1e;--mut:#6b6b70;--line:#e4e4e8;--link:#1d4ed8;--card:#fff}
-@media (prefers-color-scheme:dark){:root{--bg:#161618;--fg:#ececf0;--mut:#9a9aa2;--line:#2e2e34;--link:#8fb3ff;--card:#1d1d20}}
+/* One stylesheet for the whole site. Plain on purpose: no cards, pills, shadows or gradients.
+   The only ornament is the panmagic matrix beside the bio and the accent squares on section headings. */
+:root{
+  --bg:#ffffff; --fg:#1d1d1f; --fg2:#4a4a4f; --mut:#6b6b70;
+  --line:#ececea; --rule:#e4e4e1; --grid:#e6e6e3; --frame:#d6d6d2; --code:#f4f4f2;
+  --accent:#a3263a; --ul:#c4c4bf;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#141416; --fg:#e9e9ec; --fg2:#c4c4c9; --mut:#9c9ca3;
+    --line:#2a2a2e; --rule:#34343a; --grid:#2c2c31; --frame:#3a3a40; --code:#1e1e21;
+    --accent:#ef7d8d; --ul:#5a5a60;
+  }
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 Georgia,"Iowan Old Style",serif}
-main{max-width:42rem;margin:0 auto;padding:2.5rem 16px 5rem}
-nav{font:14px system-ui,sans-serif;display:flex;gap:1.2rem;margin-bottom:2.5rem}
-nav a{color:var(--mut);text-decoration:none} nav a:hover{color:var(--fg)}
-h1{font-size:2rem;line-height:1.2;margin:.2em 0 .4em} h2{font-size:1.3rem;margin:2.2em 0 .5em}
-a{color:var(--link)} .meta{font:14px system-ui,sans-serif;color:var(--mut)}
-.lede{font-size:1.1rem;color:var(--fg)}
-.card{display:block;padding:1rem 1.2rem;margin:1rem 0;background:var(--card);border:1px solid var(--line);border-radius:8px;text-decoration:none;color:inherit}
-.card:hover{border-color:var(--mut)} .card h3{margin:0 0 .2em;font-size:1.1rem}
-.card p{margin:0;color:var(--mut);font-size:.95rem}
-.tag{font:12px system-ui,sans-serif;border:1px solid var(--line);border-radius:99px;padding:1px 9px;color:var(--mut);margin-right:6px}
-figure{margin:1.6rem 0} figure img{width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
-figcaption{font:14px/1.5 system-ui,sans-serif;color:var(--mut);margin-top:.5rem}
-.post{font:12px system-ui,sans-serif;background:var(--line);padding:1px 7px;border-radius:4px;margin-left:4px;color:var(--mut);vertical-align:middle}
-ol li{margin:.7em 0}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:16.5px;line-height:1.6}
+
+.wrap{max-width:880px;margin:0 auto;padding:0 24px 80px}
+
+a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--ul);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--fg)}
+
+/* top bar */
+.topbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;column-gap:24px;border-bottom:1px solid var(--line)}
+.topbar .home-link{display:inline-block;padding:12px 0;font-weight:600;text-decoration:none}
+.topbar .home-link:hover{text-decoration:underline}
+.topbar nav{display:flex;flex-wrap:wrap;column-gap:26px;font-size:15.5px}
+.topbar nav a{display:inline-block;padding:12px 0;color:var(--fg2);text-decoration:none}
+.topbar nav a:hover{color:var(--fg);text-decoration:underline}
+
+/* intro: bio on the left, panmagic matrix and contact on the right */
+.intro{display:grid;grid-template-columns:minmax(0,1fr) 220px;column-gap:64px;row-gap:28px;padding-top:64px}
+.intro h1{margin:0 0 22px;font-size:42px;font-weight:600;line-height:1.1}
+.intro p{margin:0 0 16px}
+.intro p:last-child{margin-bottom:0}
+.side{display:flex;flex-direction:column;gap:22px}
+.matrix{margin:0}
+.matrix svg{display:block;width:100%;height:auto}
+.matrix .bg{fill:var(--bg);stroke:var(--frame)}
+.matrix line{stroke:var(--grid)}
+.matrix .cell{fill:var(--accent)}
+.matrix figcaption{margin-top:10px;font-size:13.5px;line-height:1.5;color:var(--mut)}
+.contact{font-size:15px;color:var(--fg2)}
+
+/* section headings: accent square, title, hairline rule */
+main h2{display:flex;align-items:center;gap:14px;margin:72px 0 20px;font-size:22px;font-weight:600;line-height:1.3}
+main h2::before{content:"";width:9px;height:9px;background:var(--accent);flex:none}
+main h2::after{content:"";flex:1;border-top:1px solid var(--rule)}
+
+/* news */
+.news{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.news li{display:grid;grid-template-columns:6.5rem minmax(0,1fr);column-gap:16px}
+.news time{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* research and projects: figure on the left, entry on the right */
+.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:36px}
+.items>li{display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:28px;row-gap:12px}
+.thumb{width:200px;height:125px;border:1px solid var(--rule);background:#ffffff;overflow:hidden}
+.thumb img{display:block;width:100%;height:100%;object-fit:contain}
+.thumb.shot{background:#0f1115}
+.thumb.shot img{object-fit:cover}
+.item-title{font-size:17.5px;font-weight:600;line-height:1.4}
+a.item-title{text-decoration:none}
+a.item-title:hover{text-decoration:underline}
+.byline{color:var(--fg2)}
+.byline b{color:var(--fg);font-weight:600}
+.items p{margin:6px 0 0}
+.links{display:flex;flex-wrap:wrap;column-gap:18px;font-size:15px}
+.links a,.accent{color:var(--accent);text-decoration:none}
+.links a{display:inline-block;padding:6px 0}
+.links a:hover,.accent:hover{text-decoration:underline}
+.companion{margin-top:4px;font-size:15px;color:var(--fg2)}
+
+/* experiment pages */
+.post{padding-top:48px;max-width:680px}
+.post h1{margin:0 0 8px;font-size:34px;font-weight:600;line-height:1.2}
+.post .byline{margin:0 0 28px;color:var(--mut);font-size:15.5px}
+.post .lede{font-size:19px;line-height:1.55}
+.post p{margin:0 0 16px}
+.post h2{margin:44px 0 14px;font-size:22px}
+.post ol,.post ul{margin:0 0 16px;padding-left:1.4em}
+.post ol>li+li{margin-top:12px}
+.post ul>li+li{margin-top:4px}
+b,strong{font-weight:600}
+.posthoc{color:var(--mut);font-style:italic}
+figure{margin:32px 0}
+figure img{display:block;width:100%;height:auto}
+figcaption{margin-top:10px;font-size:14.5px;line-height:1.5;color:var(--mut)}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+code{font-size:.88em;background:var(--code);padding:.1em .3em;border-radius:3px}
+pre{margin:0 0 16px;padding:12px 14px;font-size:14px;line-height:1.5;background:var(--code);border-radius:3px;overflow-x:auto}
+pre code{font-size:inherit;background:none;padding:0}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+
+@media (max-width:720px){
+  .intro{grid-template-columns:minmax(0,1fr);padding-top:32px}
+  .matrix{max-width:220px}
+  .news li{grid-template-columns:minmax(0,1fr);row-gap:0}
+  .items>li{grid-template-columns:minmax(0,1fr)}
+  .thumb{width:100%;max-width:340px;height:auto;aspect-ratio:8/5}
+  .post h1{font-size:30px}
+}

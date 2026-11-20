@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="320" height="200">
+<rect width="320" height="200" fill="#ffffff"/>
+<line x1="76.0" y1="16.0" x2="244.0" y2="16.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="76.0" y1="16.0" x2="76.0" y2="184.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="76.0" y1="40.0" x2="244.0" y2="40.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="100.0" y1="16.0" x2="100.0" y2="184.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="76.0" y1="64.0" x2="244.0" y2="64.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="124.0" y1="16.0" x2="124.0" y2="184.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="76.0" y1="88.0" x2="244.0" y2="88.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="148.0" y1="16.0" x2="148.0" y2="184.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="76.0" y1="112.0" x2="244.0" y2="112.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="172.0" y1="16.0" x2="172.0" y2="184.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="76.0" y1="136.0" x2="244.0" y2="136.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="196.0" y1="16.0" x2="196.0" y2="184.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="76.0" y1="160.0" x2="244.0" y2="160.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="220.0" y1="16.0" x2="220.0" y2="184.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="76.0" y1="184.0" x2="244.0" y2="184.0" stroke="#d9d9d6" stroke-width="1"/>
+<line x1="244.0" y1="16.0" x2="244.0" y2="184.0" stroke="#d9d9d6" stroke-width="1"/>
+<rect x="101.5" y="17.5" width="21.0" height="21.0" fill="#1d1d1f"/>
+<rect x="149.5" y="41.5" width="21.0" height="21.0" fill="#1d1d1f"/>
+<rect x="197.5" y="65.5" width="21.0" height="21.0" fill="#1d1d1f"/>
+<rect x="77.5" y="89.5" width="21.0" height="21.0" fill="#1d1d1f"/>
+<rect x="125.5" y="113.5" width="21.0" height="21.0" fill="#1d1d1f"/>
+<rect x="173.5" y="137.5" width="21.0" height="21.0" fill="#1d1d1f"/>
+<rect x="221.5" y="161.5" width="21.0" height="21.0" fill="#1d1d1f"/>
+</svg>

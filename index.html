@@ -1,13 +1,126 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Jaeho Lee · Research</title><meta name="description" content="Mechanistic interpretability experiments: how small networks learn group structure."><link rel="stylesheet" href="style.css"></head>
-<body><main>
-<nav><a href="./">Home</a><a href="cosets-vs-irreps/">Cosets vs irreps</a><a href="https://github.com/jlee0229">GitHub</a></nav>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jaeho Lee</title>
+<meta name="description" content="Jaeho Lee: mechanistic interpretability, and earlier work on the affine group Aff(Z_n) and panmagic permutations.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="topbar">
+<a class="home-link" href="#top">Jaeho Lee</a>
+<nav aria-label="Sections">
+<a href="#news">News</a>
+<a href="#research">Research</a>
+<a href="#projects">Projects</a>
+</nav>
+</header>
+
+<main id="top">
+<section class="intro">
+<div>
 <h1>Jaeho Lee</h1>
-<p class="lede">I run small, pre-registered mechanistic interpretability experiments. Right now: how tiny networks that learn a group's multiplication table organize their neurons.</p>
-<h2>Experiments</h2>
-<a class="card" href="cosets-vs-irreps/"><h3>Cosets vs irreps</h3><p>Do one-hidden-layer MLPs on finite groups organize neurons by subgroup cosets or by irreducible representations? 89 models, 7 groups. Done; follow-ups ongoing.</p><p style="margin-top:.5rem"><span class="tag">done</span><span class="tag">pre-registered</span></p></a>
-<a class="card" href="#"><h3>Weight-space reading</h3><p>Replicating the weight-space-programming idea on our group MLPs, with controls. Pilot not run yet.</p><p style="margin-top:.5rem"><span class="tag">planned</span></p></a>
-<a class="card" href="#"><h3>Weight-sparse variant (Gao et al.)</h3><p>Does sparsity push the network toward a different solution, or only make the coset one easier to read? Not run yet.</p><p style="margin-top:.5rem"><span class="tag">planned</span></p></a>
-<h2>How this site works</h2>
-<p class="meta">Each experiment gets a page with the result first, the figure, then links to the full report and the code. Planned experiments are listed as planned. Code and data stay in the GitHub repos; this site only summarizes.</p>
-</main></body></html>
+<p>I'm a first-year at MIT. In the past I worked on the affine group Aff(ℤ<sub><i>n</i></sub>) and panmagic permutations. Now I'm mostly interested in mechanistic interpretability, starting with what small networks learn when you train them to multiply in a finite group.</p>
+<p>This year I'm doing research in the Fiete Lab. Before MIT I wrote three papers with Sergiy Koshkin, listed below, and spent a summer at RSI working on quadratic residues and pseudorandomness. I was a Regeneron STS finalist in 2026.</p>
+<p>I also like building things. One of them is <a href="https://playhivemusic.com">HiveMusic</a>, which turns a room of phones into one speaker.</p>
+</div>
+<aside class="side">
+<figure class="matrix">
+<svg viewBox="0 0 197 197" role="img" aria-label="Permutation matrix of x maps to 2x plus 1 mod 7">
+<rect class="bg" x="0.5" y="0.5" width="196" height="196"/>
+<line x1="28.5" y1="0.5" x2="28.5" y2="196.5"/><line x1="56.5" y1="0.5" x2="56.5" y2="196.5"/><line x1="84.5" y1="0.5" x2="84.5" y2="196.5"/><line x1="112.5" y1="0.5" x2="112.5" y2="196.5"/><line x1="140.5" y1="0.5" x2="140.5" y2="196.5"/><line x1="168.5" y1="0.5" x2="168.5" y2="196.5"/>
+<line x1="0.5" y1="28.5" x2="196.5" y2="28.5"/><line x1="0.5" y1="56.5" x2="196.5" y2="56.5"/><line x1="0.5" y1="84.5" x2="196.5" y2="84.5"/><line x1="0.5" y1="112.5" x2="196.5" y2="112.5"/><line x1="0.5" y1="140.5" x2="196.5" y2="140.5"/><line x1="0.5" y1="168.5" x2="196.5" y2="168.5"/>
+<rect class="cell" x="32" y="4" width="21" height="21"/>
+<rect class="cell" x="88" y="32" width="21" height="21"/>
+<rect class="cell" x="144" y="60" width="21" height="21"/>
+<rect class="cell" x="4" y="88" width="21" height="21"/>
+<rect class="cell" x="60" y="116" width="21" height="21"/>
+<rect class="cell" x="116" y="144" width="21" height="21"/>
+<rect class="cell" x="172" y="172" width="21" height="21"/>
+</svg>
+<figcaption><i>x</i> ↦ 2<i>x</i> + 1 mod 7. Every row, column and wrapped diagonal has exactly one filled cell.</figcaption>
+</figure>
+<div class="contact">
+<div>Cambridge, MA</div>
+<div>jlee229 [at] mit [dot] edu</div>
+<div class="links"><a href="https://github.com/jlee0229">GitHub</a><a href="https://www.linkedin.com/in/jaeho-lee-5446b23a4">LinkedIn</a></div>
+</div>
+</aside>
+</section>
+
+<h2 id="news">News</h2>
+<ul class="news">
+<li><time datetime="2026-11">Nov 2026</time><span>Paper with Sergiy Koshkin on the conjugacy classes and representations of Aff(ℤ<sub><i>n</i></sub>) accepted to <i>Integers</i>.</span></li>
+<li><time datetime="2026-09">Sep 2026</time><span>Built <a href="https://playhivemusic.com">HiveMusic</a> at HackMIT with Frank Lucci.</span></li>
+<li><time datetime="2026-09">Sep 2026</time><span>Posted <a href="cosets-vs-irreps/">cosets vs irreps</a>, a pre-registered study of 89 small networks on 7 finite groups.</span></li>
+<li><time datetime="2026-09">Sep 2026</time><span>Started research in the Fiete Lab.</span></li>
+<li><time datetime="2026-01">Jan 2026</time><span>Named a Regeneron Science Talent Search finalist.</span></li>
+</ul>
+
+<h2 id="research">Research</h2>
+<ul class="items">
+<li>
+<div class="thumb"><img src="figures/perm11.svg" alt="11 by 11 permutation matrix of the affine permutation x maps to 3x plus 2 mod 11"></div>
+<div>
+<span class="item-title">The affine group of integers modulo <i>n</i>: conjugacy classes and representations</span>
+<div class="byline">Sergiy Koshkin, <b>Jaeho Lee</b> · <i>Integers, to appear</i></div>
+<p>We describe the conjugacy classes and irreducible representations of Aff(ℤ<sub><i>n</i></sub>) for every <i>n</i>. For an odd prime <i>p</i>, the affine permutation matrices span the same space as all <i>p</i> × <i>p</i> permutation matrices.</p>
+</div>
+</li>
+<li>
+<div class="thumb"><img src="figures/width_threshold.svg" alt="Chart: fraction of seeds that grok against hidden width over p squared"></div>
+<div>
+<a class="item-title" href="cosets-vs-irreps/">Cosets vs irreps</a>
+<div class="byline"><b>Jaeho Lee</b> · <i>Pre-registered experiment, 2026</i></div>
+<p>In 89 one-hidden-layer MLPs trained on 7 finite groups, neurons mostly organize by subgroup cosets, not by irreducible representations.</p>
+<div class="links"><a href="cosets-vs-irreps/">page</a><a href="cosets-vs-irreps/writeup.html">write-up</a><a href="https://github.com/jlee0229/cosets-vs-irreps">code</a></div>
+</div>
+</li>
+<li>
+<div class="thumb"><img src="figures/perm7.svg" alt="7 by 7 permutation matrix of x maps to 2x plus 1 mod 7"></div>
+<div>
+<a class="item-title" href="https://www.sciencedirect.com/science/article/pii/S0012365X25000755">N-ary groups of panmagic permutations from the Post coset theorem</a>
+<div class="byline">Sergiy Koshkin, <b>Jaeho Lee</b> · <i>Discrete Mathematics, 2025</i></div>
+<p>The Post covers of N-ary groups of panmagic permutations are subgroups of Aff(ℤ<sub><i>n</i></sub>), namely the permutations that keep a panmagic permutation panmagic under multiplication.</p>
+<div class="links"><a href="https://arxiv.org/abs/2606.23735">arXiv</a><a href="https://www.sciencedirect.com/science/article/pii/S0012365X25000755">journal</a></div>
+<div class="companion">Companion paper: <a href="https://journals.calstate.edu/pump/article/view/4862">Panmagic permutations and N-ary groups</a>, <i>PUMP Journal of Undergraduate Research</i> 8 (2025), 195–212 · <a class="accent" href="https://arxiv.org/abs/2606.22221">arXiv</a></div>
+</div>
+</li>
+</ul>
+
+<h2 id="projects">Projects</h2>
+<ul class="items">
+<li>
+<div class="thumb shot"><img src="figures/humanpath.jpg" alt="Humanpath map of a walk from Massachusetts State House to Boston Public Garden, with a recommended route scoring 89 out of 100"></div>
+<div>
+<a class="item-title" href="https://huggingface.co/spaces/jlee0229/Humanpath">Humanpath</a>
+<div class="byline"><b>Jaeho Lee</b> · <i>Summer 2026</i></div>
+<p>Humanpath finds walking routes and scores them block by block for sidewalk condition and safety. It's made for phones and currently supports Boston and Austin. A slider trades distance for a better walk, and one bad stretch pulls a route's score down instead of getting averaged away.</p>
+<div class="links"><a href="https://huggingface.co/spaces/jlee0229/Humanpath">app</a><a href="https://github.com/jlee0229/Walkability">code</a></div>
+</div>
+</li>
+<li>
+<div class="thumb shot"><img src="figures/hivemusic.jpg" alt="HiveMusic home page with Host a hive and Join buttons"></div>
+<div>
+<a class="item-title" href="https://playhivemusic.com">HiveMusic</a>
+<div class="byline">Frank Lucci, <b>Jaeho Lee</b> · <i>HackMIT, 2026</i></div>
+<p>Guests scan a QR code and their phones play as one speaker. The phones sync clocks in the browser and calibrate latency with the mic, so each one can play a different stem of the same song.</p>
+<div class="links"><a href="https://playhivemusic.com">site</a><a href="https://github.com/piar1243/hive-music-official">code</a></div>
+</div>
+</li>
+</ul>
+
+<!-- Writing lives on Substack. When there's a post worth pointing to, add a "Writing" nav link and:
+<h2 id="writing">Writing</h2>
+<ul class="news">
+<li><time datetime="2027-01">Jan 2027</time><a href="https://EXTERNAL-POST-URL">Post title</a></li>
+</ul>
+-->
+</main>
+
+</div>
+</body>
+</html>
