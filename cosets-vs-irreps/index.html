@@ -10,10 +10,10 @@
 <body>
 <div class="wrap">
 
-<header class="topbar">
-<a class="home-link" href="../">Jaeho Lee</a>
+<header class="top">
+<a class="name" href="../">Jaeho Lee</a>
 <nav aria-label="Sections">
-<a href="../#news">News</a>
+<!-- nav-writing --><!-- /nav-writing -->
 <a href="../#research">Research</a>
 <a href="../#projects">Projects</a>
 </nav>
@@ -21,8 +21,10 @@
 
 <main>
 <article class="post">
+<header class="post-head">
 <h1>Cosets vs irreps</h1>
-<p class="byline">A pre-registered experiment. Findings 3 and 4 came after the fact and are marked post hoc.</p>
+<p class="meta">A pre-registered experiment. Findings 3 and 4 came after the fact and are marked post hoc.</p>
+</header>
 
 <p class="lede">There are two published answers to how a small network learns a group's multiplication table. Chughtai et al. say its neurons line up with irreducible representations, and Stander et al. say they line up with cosets of subgroups. I analyzed 89 networks to check, and in the models I tested, it was mostly cosets.</p>
 
