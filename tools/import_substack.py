@@ -53,6 +53,26 @@ def fetch_post(url):
     return post
 
 
+MAX_WIDTH = 2000  # px; the post column is 640px, so this still covers 3x screens
+
+
+def shrink(path):
+    """Downscale very large photos so a post doesn't ship a 10 MB image."""
+    try:
+        from PIL import Image
+    except ImportError:
+        return
+    try:
+        with Image.open(path) as im:
+            if im.width <= MAX_WIDTH or im.format not in ("JPEG", "PNG", "WEBP"):
+                return
+            fmt = im.format
+            im = im.resize((MAX_WIDTH, round(im.height * MAX_WIDTH / im.width)), Image.LANCZOS)
+            im.save(path, fmt, **({"quality": 85, "optimize": True} if fmt in ("JPEG", "WEBP") else {}))
+    except OSError:
+        pass
+
+
 # ---------------------------------------------------------------- HTML -> Markdown
 
 def esc(text):
@@ -166,6 +186,7 @@ class Converter:
         name = f"{self.n_images:02d}{ext}"
         self.img_dir.mkdir(parents=True, exist_ok=True)
         (self.img_dir / name).write_bytes(data)
+        shrink(self.img_dir / name)
         return f"images/{name}"
 
     # blocks ------------------------------------------------------
@@ -188,6 +209,10 @@ class Converter:
             return ""
         if t == "p":
             text = self.inline(n).strip()
+            # Substack writers often use a bold line as a section heading
+            m = re.fullmatch(r"\*\*([^*\n]{1,90})\*\*", text)
+            if m and len(n.find_all(["strong", "b"])) == 1:
+                return "## " + m.group(1).strip()
             return "\n".join(guard_line_start(l) for l in text.split("\n"))
         if re.fullmatch(r"h[1-6]", t):
             level = max(2, int(t[1]))

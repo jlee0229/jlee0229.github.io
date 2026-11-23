@@ -94,6 +94,7 @@ section>h2{margin:0 0 14px;font-size:inherit;font-weight:400;color:var(--mut)}
 .prose li>p+p{margin-top:.6em}
 .prose blockquote{margin-left:0;margin-right:0;padding-left:1.3em;color:var(--mut);font-style:italic}
 .prose blockquote>*+*{margin-top:.8em}
+.prose blockquote em,.prose blockquote i{font-style:normal}
 .prose hr{border:0;height:1px;background:var(--hair);margin:2.4em 0}
 
 /* figures: images keep their own size up to the column; captions are small muted sans */
