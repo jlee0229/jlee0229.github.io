@@ -23,47 +23,43 @@
 <article class="post">
 <header class="post-head">
 <h1>Cosets vs irreps</h1>
-<p class="subtitle">What 89 small networks did with group multiplication.</p>
+<p class="subtitle">How small networks learn to multiply in a group, tested on 89 of them.</p>
 <p class="meta">September 2026 · Pre-registered, except where marked post hoc</p>
 </header>
 
 <div class="prose">
 <p>Train a small neural network on the multiplication table of a group, with some of the entries hidden, and it can learn to fill in the rest. I wanted to know how it does that.</p>
 
-<p>There are two published answers, and they disagree. Chughtai et al. found that the neurons line up with the group's irreducible representations, or irreps.<sup class="fn"><a href="#fn1" id="fnref1">1</a></sup> Stander et al. found that they line up with cosets of subgroups: pick a subgroup, and a neuron responds according to which coset the input falls in.</p>
+<p>There are two published answers, and they disagree. Chughtai et al. found that the neurons line up with the group's irreducible representations, or irreps.<sup class="fn"><a href="#fn1" id="fnref1">1</a></sup> Stander et al. found that they line up with cosets. A subgroup splits the whole group into equal pieces called cosets, and a coset neuron responds according to which piece its input falls in.</p>
 
 <blockquote><p>Both papers study the same kind of model, so which one is right?</p></blockquote>
 
-<p>Before training anything, I wrote down what each answer predicts and froze those predictions in pre-registration files.<sup class="fn"><a href="#fn2" id="fnref2">2</a></sup> Then I trained 89 networks.</p>
-
 <h2>The setup</h2>
-<p>Every model is a one-hidden-layer ReLU MLP of width 128, trained with one of two optimizers. The groups are:</p>
-<ul>
-<li>the symmetric group <i>S</i><sub>5</sub>, with 50 models,</li>
-<li>the dihedral groups <i>D</i><sub>59</sub> and <i>D</i><sub>61</sub>, with 8,</li>
-<li>the affine groups Aff(ℤ<sub><i>n</i></sub>) for <i>n</i> = 11, 15, 16 and 21, with 31.</li>
-</ul>
-<p>The affine groups are the ones I know best. Sergiy Koshkin and I worked out their conjugacy classes and representations, so I knew what their irreps look like before I looked at a single neuron.</p>
+<p>Every model is a network with one hidden layer of 128 neurons. Chughtai et al. released the ones they trained, so I started there: 50 models on the symmetric group <i>S</i><sub>5</sub> and 8 on the dihedral groups <i>D</i><sub>59</sub> and <i>D</i><sub>61</sub>. I trained 31 more on the affine groups Aff(ℤ<sub><i>n</i></sub>) for <i>n</i> = 11, 15, 16 and 21. Those are the groups I know best: Sergiy Koshkin and I worked out their conjugacy classes and representations, so I knew what their irreps look like before I looked at a single neuron. Everything ran on one laptop.</p>
+<p>Before analyzing each batch of models, I wrote down what each answer predicts and froze those predictions in pre-registration files.<sup class="fn"><a href="#fn2" id="fnref2">2</a></sup></p>
 
 <h2>The answer: cosets</h2>
-<p>On <i>S</i><sub>5</sub>, all 50 models put at least 90% of their pre-activation energy in coset-aligned neurons, with a median of 100%. Untrained networks score 0. On the affine groups, 3 of the 4 blocks I could test passed as plain cosets, and the fourth (<i>n</i> = 21) was unclear.</p>
-<p>The single-frequency irrep basis never carried a majority in any block, even though it solves the task with less redundancy.</p>
-<p>The networks also split groups into pieces when they could. Aff(ℤ<sub>15</sub>) and Aff(ℤ<sub>21</sub>) break into smaller groups (15 = 3 · 5 and 21 = 3 · 7), and every model solved the pieces separately and left the joint block empty.</p>
+<p>On <i>S</i><sub>5</sub>, all 50 models put at least 90% of their neuron activity in coset-aligned neurons, with a median of 100%. Untrained networks score 0. On the affine groups, 3 of the 4 parts I could test came out as plain cosets, and the fourth (<i>n</i> = 21) was unclear.</p>
+<p>The irrep version, where each neuron uses a single frequency, never carried a majority anywhere, even though it solves the task with less redundancy.</p>
+<p>The networks also split groups apart when they could. Since 15 = 3 · 5, Aff(ℤ<sub>15</sub>) behaves like a group for 3 and a group for 5 stuck together, and the same goes for 21 = 3 · 7. Every model solved the two pieces separately and never built the part that would combine them.</p>
 
-<h2>Width (post hoc)</h2>
-<p>I didn't pre-register this part, so I'd treat it as a lead. If the network builds cosets, I can build the same circuit by hand and count its neurons. On Aff(𝔽<sub><i>p</i></sub>), the hand-built coset circuit needs about <i>p</i><sup>2</sup> neurons, and grokking starts near that width. At <i>p</i> = 11, none of 3 seeds grok at width 100 and all 3 do at width 140. At <i>p</i> = 13, all 6 runs fail at width 128, and every run at width 160 or above succeeds.</p>
+<h2>What each neuron does (post hoc)</h2>
+<p>None of what follows was pre-registered, so I'd treat it as a lead. On the prime cases I went through the neurons one at a time. Each coset neuron picks one coset and pushes down the network's score for every answer in it, which rules out answers the product can't be. Replacing each neuron's input pattern with its average over the coset leaves accuracy unchanged, and removing the coset part drops accuracy to near chance.</p>
+<p>The coset circuit is also cheaper in one sense. Under ReLU it gets 6 to 24 times as much margin per unit of weight as the irrep circuit, which would explain why training with weight decay favors it.</p>
+<p>If the network builds cosets, I can build the same circuit by hand and count its neurons. On Aff(𝔽<sub><i>p</i></sub>) it needs about <i>p</i><sup>2</sup>, and that is where training starts to work reliably. At <i>p</i> = 11, none of 3 seeds learn the task at width 100 and all 3 do at width 140. At <i>p</i> = 13, all 5 runs fail at width 128, and every run at width 160 or above succeeds.</p>
 
 <figure>
 <img src="../figures/width_threshold.svg" alt="Fraction of seeds that grok versus hidden width over p squared, for p = 7, 11 and 13">
-<figcaption>The fraction of seeds that grok within 100k epochs, against hidden width divided by <i>p</i><sup>2</sup>. Aff(𝔽<sub>7</sub>) uses 60% of pairs for training, because at 40% it's limited by data. Each point is 1 to 6 seeds, and <i>p</i> = 13 has a single seed at most widths. Three points come from earlier runs in the width-grid notes.</figcaption>
+<figcaption>The fraction of seeds that learn the task within 100k epochs, against hidden width divided by <i>p</i><sup>2</sup>. Aff(𝔽<sub>7</sub>) uses 60% of pairs for training, because at 40% it's limited by data. Each point is 1 to 6 seeds, and <i>p</i> = 13 has a single seed at most widths. Three points come from earlier runs in the width-grid notes.</figcaption>
 </figure>
 
-<p>I also tried other activations, again post hoc. With |<i>t</i>| instead of ReLU, the networks build the same coset circuit. With a quadratic activation the coset preference disappears, and the networks don't switch to the irrep basis either.</p>
+<p>I also changed the activation function. With |<i>t</i>| instead of ReLU, the networks build the same coset circuit. With a quadratic activation the coset preference disappears, and the networks don't switch to irreps either.</p>
+<p>Last, I tried training with sparse weights, keeping only 30% or 10% of each weight matrix. None of 5 runs on Aff(ℤ<sub>11</sub>) got above chance in 100k epochs, against 3 of 3 normal runs on the same seeds. The sparse models memorized the training examples just as fast but never generalized, and they showed no coset structure.</p>
 
 <h2>What didn't work</h2>
-<p>Aff(ℤ<sub>13</sub>) never learned at width 128. That fits the width results, since 13<sup>2</sup> = 169. The memorizer control I used for <i>S</i><sub>5</sub> was the wrong null, and I recorded it as a design error. Two of the pre-registered predictions for Aff(ℤ<sub>15</sub>) came out inconclusive.</p>
+<p>Aff(ℤ<sub>13</sub>) never learned at width 128, which fits the width results, since 13<sup>2</sup> = 169. The memorizer control I used for <i>S</i><sub>5</sub> was the wrong null, and I recorded it as a design error. I withdrew one prediction because it turned out to be true by definition, and two predictions for Aff(ℤ<sub>15</sub>) came out inconclusive.</p>
 <p>I also pushed the repository as one commit after the work was done, so git history can't show when I froze each pre-registration. The only record of the order is the date written inside each file.</p>
-<p>Every pre-registered model is a one-hidden-layer MLP of width 128, so the coset result is a claim about that setting. I haven't tested deeper networks or transformers.</p>
+<p>The result is narrow. Every pre-registered model is a one-hidden-layer ReLU network of width 128, trained with one of two optimizers, and which structure a network picks is known to depend on how it's trained. So the coset preference is a claim about this setting. Which structure forms first during training is still open.</p>
 
 <h2>Code and notes</h2>
 <ul>

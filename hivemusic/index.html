@@ -28,7 +28,9 @@
 </header>
 
 <div class="prose">
-<p>Frank Lucci and I built HiveMusic at HackMIT. One person hosts a hive, and guests join by scanning a QR code or typing in the hive code. Their phones then play the same song together as one speaker.</p>
+<p>Frank Lucci and I started HiveMusic at HackMIT 2026, and it's now live. A host taps "Host a hive", friends scan a QR code and join in their browser without installing anything, and every phone in the room plays the same song in sync.</p>
+
+<p>One phone is quiet. Phones that play within about 10 milliseconds of each other add up: ten of them are about 10 decibels louder than one, and they sound like a single source instead of a smear of echoes.</p>
 
 <figure>
 <img src="../figures/hivemusic.jpg" alt="HiveMusic home page with Host a hive and Join buttons">
@@ -36,8 +38,20 @@
 </figure>
 
 <h2>Keeping phones in sync</h2>
-<p>Phones that play the same song even slightly out of step sound like an echo. Each phone's clock is a little off, and each has its own delay between starting playback and sound coming out of the speaker.</p>
-<p>The phones sync their clocks in the browser, and then each one measures its own output latency with its microphone. Once they agree on time, each phone can also play a different stem of the same song instead of the full mix.</p>
+<p>The goal is 10 milliseconds or less between any two phones. Each phone keeps asking the server what time it is and corrects for how long the answer took to arrive, which is how computers sync their clocks over the internet. It loads the song ahead of time and schedules playback against that shared clock.</p>
+<p>Phones also differ in how long it takes from starting a sound to hearing it from the speaker. So when the host presses Start, the hive runs a short tuning step: every phone plays a click, and the host's phone listens and measures how late each one is. After that, each phone keeps correcting for drift while the music plays.</p>
+
+<h2>What a room of phones can do</h2>
+<p>Every phone holds the whole song, split into parts (drums, bass, vocals and the rest) when the song has them. Switching modes changes what each phone plays, at an agreed moment on the shared clock:</p>
+<ul>
+<li>In unison mode, every phone plays the whole song.</li>
+<li>In orchestra mode, each phone plays one part, so walking across the room walks through the band.</li>
+<li>In stereo mode, the two halves of the room play left and right.</li>
+<li>In wave mode, the sound sweeps across the room.</li>
+<li>In strobe mode, groups of phones trade off on the beat.</li>
+<li>In choir mode, each phone is pitch-shifted to a harmony of the song.</li>
+</ul>
+<p>Hosts upload their own songs, which play as a playlist. The server analyzes each one for tempo, beats and drops.</p>
 </div>
 </article>
 </main>
