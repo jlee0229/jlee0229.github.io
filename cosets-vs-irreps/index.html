@@ -23,16 +23,16 @@
 <article class="post">
 <header class="post-head">
 <h1>Cosets vs irreps</h1>
-<p class="subtitle">What 89 small networks did with group multiplication, and what I got wrong along the way.</p>
+<p class="subtitle">What 89 small networks did with group multiplication.</p>
 <p class="meta">September 2026 · Pre-registered, except where marked post hoc</p>
 </header>
 
 <div class="prose">
-<p>Give a small neural network the multiplication table of a group, hide some of the entries, and train it until it fills in the rest. Somewhere inside, the network has found a way to multiply. I wanted to know what that way looks like.</p>
+<p>Train a small neural network on the multiplication table of a group, with some of the entries hidden, and it can learn to fill in the rest. I wanted to know how it does that.</p>
 
-<p>There are two published answers, and they disagree. Chughtai et al. argue that the neurons line up with the group's irreducible representations, or irreps.<sup class="fn"><a href="#fn1" id="fnref1">1</a></sup> Stander et al. argue that they line up with cosets of subgroups, a much more elementary object: pick a subgroup, and a neuron responds according to which coset the input falls in.</p>
+<p>There are two published answers, and they disagree. Chughtai et al. found that the neurons line up with the group's irreducible representations, or irreps.<sup class="fn"><a href="#fn1" id="fnref1">1</a></sup> Stander et al. found that they line up with cosets of subgroups: pick a subgroup, and a neuron responds according to which coset the input falls in.</p>
 
-<blockquote><p>Both papers study the same kind of model. So which one is right?</p></blockquote>
+<blockquote><p>Both papers study the same kind of model, so which one is right?</p></blockquote>
 
 <p>Before training anything, I wrote down what each answer predicts and froze those predictions in pre-registration files.<sup class="fn"><a href="#fn2" id="fnref2">2</a></sup> Then I trained 89 networks.</p>
 
@@ -46,24 +46,24 @@
 <p>The affine groups are the ones I know best. Sergiy Koshkin and I worked out their conjugacy classes and representations, so I knew what their irreps look like before I looked at a single neuron.</p>
 
 <h2>The answer: cosets</h2>
-<p>On <i>S</i><sub>5</sub>, it wasn't close. All 50 models put at least 90% of their pre-activation energy in coset-aligned neurons, with a median of 100%. Untrained networks score 0. On the affine groups, 3 of the 4 blocks I could test passed as plain cosets, and the fourth (<i>n</i> = 21) was unclear.</p>
-<p>What surprised me more is what the networks didn't do. The single-frequency irrep basis solves the task with less redundancy, so a network that wanted to be efficient would use it. It never carried a majority in any block. The networks had the cheaper option and passed on it.</p>
-<p>The networks also took groups apart. Aff(ℤ<sub>15</sub>) and Aff(ℤ<sub>21</sub>) split into smaller groups, since 15 = 3 · 5 and 21 = 3 · 7, and every model solved the pieces separately and left the joint block empty.</p>
+<p>On <i>S</i><sub>5</sub>, all 50 models put at least 90% of their pre-activation energy in coset-aligned neurons, with a median of 100%. Untrained networks score 0. On the affine groups, 3 of the 4 blocks I could test passed as plain cosets, and the fourth (<i>n</i> = 21) was unclear.</p>
+<p>The single-frequency irrep basis never carried a majority in any block, even though it solves the task with less redundancy.</p>
+<p>The networks also split groups into pieces when they could. Aff(ℤ<sub>15</sub>) and Aff(ℤ<sub>21</sub>) break into smaller groups (15 = 3 · 5 and 21 = 3 · 7), and every model solved the pieces separately and left the joint block empty.</p>
 
-<h2>Why does width matter? (post hoc)</h2>
-<p>Here I went off script, so treat this section as a lead rather than a result. If the network builds cosets, I can build the same circuit by hand and count its neurons. On Aff(𝔽<sub><i>p</i></sub>) the hand-built coset circuit needs about <i>p</i><sup>2</sup> neurons, and that is roughly where grokking starts. At <i>p</i> = 11, none of 3 seeds grok at width 100 and all 3 do at width 140. At <i>p</i> = 13, all 6 runs fail at width 128, and every run at width 160 or above succeeds.</p>
+<h2>Width (post hoc)</h2>
+<p>I didn't pre-register this part, so I'd treat it as a lead. If the network builds cosets, I can build the same circuit by hand and count its neurons. On Aff(𝔽<sub><i>p</i></sub>), the hand-built coset circuit needs about <i>p</i><sup>2</sup> neurons, and grokking starts near that width. At <i>p</i> = 11, none of 3 seeds grok at width 100 and all 3 do at width 140. At <i>p</i> = 13, all 6 runs fail at width 128, and every run at width 160 or above succeeds.</p>
 
 <figure>
 <img src="../figures/width_threshold.svg" alt="Fraction of seeds that grok versus hidden width over p squared, for p = 7, 11 and 13">
 <figcaption>The fraction of seeds that grok within 100k epochs, against hidden width divided by <i>p</i><sup>2</sup>. Aff(𝔽<sub>7</sub>) uses 60% of pairs for training, because at 40% it's limited by data. Each point is 1 to 6 seeds, and <i>p</i> = 13 has a single seed at most widths. Three points come from earlier runs in the width-grid notes.</figcaption>
 </figure>
 
-<p>I also swapped the activation. With |<i>t</i>| instead of ReLU, the networks build the same coset circuit. With a quadratic activation the coset preference disappears, but the networks don't switch to the irrep basis either. So the answer to "cosets or irreps?" seems to depend on the activation, which neither paper set out to test.</p>
+<p>I also tried other activations, again post hoc. With |<i>t</i>| instead of ReLU, the networks build the same coset circuit. With a quadratic activation the coset preference disappears, and the networks don't switch to the irrep basis either.</p>
 
-<h2>What I got wrong</h2>
-<p>Aff(ℤ<sub>13</sub>) never learned at width 128, which the width results above now explain. The memorizer control I used for <i>S</i><sub>5</sub> was the wrong null, and I recorded it as a design error rather than quietly fixing it. Two of the pre-registered predictions for Aff(ℤ<sub>15</sub>) came out inconclusive.</p>
-<p>There is also a gap in the paper trail. I pushed the repository as one commit after the work was done, so git history can't show when I froze each pre-registration. The only record of the order is the date written inside each file.</p>
-<p>And the claim itself is narrow. Every model here is a one-hidden-layer MLP at width 128. In this setting, networks prefer cosets. Whether that holds for deeper networks or transformers, I haven't tested.</p>
+<h2>What didn't work</h2>
+<p>Aff(ℤ<sub>13</sub>) never learned at width 128. That fits the width results, since 13<sup>2</sup> = 169. The memorizer control I used for <i>S</i><sub>5</sub> was the wrong null, and I recorded it as a design error. Two of the pre-registered predictions for Aff(ℤ<sub>15</sub>) came out inconclusive.</p>
+<p>I also pushed the repository as one commit after the work was done, so git history can't show when I froze each pre-registration. The only record of the order is the date written inside each file.</p>
+<p>Every pre-registered model is a one-hidden-layer MLP of width 128, so the coset result is a claim about that setting. I haven't tested deeper networks or transformers.</p>
 
 <h2>Code and notes</h2>
 <ul>
@@ -74,8 +74,8 @@
 
 <section class="footnotes">
 <ol>
-<li id="fn1">An irrep writes each group element as a matrix, in a way that can't be split into smaller independent blocks. Every representation of a finite group is built out of irreps. <a class="fn-back" href="#fnref1">↩</a></li>
-<li id="fn2">It's easy to look at a trained network and find whatever structure you went in looking for. Writing the predictions down first meant the answer could surprise me. <a class="fn-back" href="#fnref2">↩</a></li>
+<li id="fn1">An irrep writes each group element as a matrix that can't be split into smaller independent blocks. Every representation of a finite group is built out of irreps. <a class="fn-back" href="#fnref1">↩</a></li>
+<li id="fn2">Once a network is trained, it's easy to find whatever structure you expected to find. Writing the predictions down first was my way around that. <a class="fn-back" href="#fnref2">↩</a></li>
 </ol>
 </section>
 </div>
