@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HiveMusic · Jaeho Lee</title>
+<meta name="description" content="A room of phones that plays as one speaker. Built at HackMIT 2026 with Frank Lucci.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+<a class="name" href="../">Jaeho Lee</a>
+<nav aria-label="Sections">
+<!-- nav-writing --><a href="../#writing">Writing</a><!-- /nav-writing -->
+<a href="../#research">Research</a>
+<a href="../#projects">Projects</a>
+</nav>
+</header>
+
+<main>
+<article class="post">
+<header class="post-head">
+<h1>HiveMusic</h1>
+<p class="subtitle">Turn a room of phones into one speaker.</p>
+<p class="meta">HackMIT 2026 · With Frank Lucci · <a href="https://playhivemusic.com">Try it</a> · <a href="https://github.com/piar1243/hive-music-official">Code</a></p>
+</header>
+
+<div class="prose">
+<p>Everyone at a party has a speaker in their pocket, and none of them are very good on their own. Frank Lucci and I built HiveMusic at HackMIT to make them work together.</p>
+
+<p>One person hosts a hive. Guests scan a QR code or type in the hive code, and their phones join in the browser, with nothing to install. From then on, every phone in the room plays the same song as one speaker.</p>
+
+<figure>
+<img src="../figures/hivemusic.jpg" alt="HiveMusic home page with Host a hive and Join buttons">
+<figcaption>The home page: host a hive, or join one with its code.</figcaption>
+</figure>
+
+<h2>Keeping phones in sync</h2>
+<p>The hard part is time. Two phones playing the same song even slightly apart don't sound like one speaker; they sound like an echo. Each phone's clock is a little off, and each one has its own delay between "play" and sound actually leaving the speaker.</p>
+<p>HiveMusic handles both. The phones sync their clocks in the browser, and then each phone calibrates its own output latency with its microphone. Once they agree on time, they don't all have to play the same thing: each phone can play a different stem of the same song, so the vocals come from one side of the room and the drums from the other.</p>
+</div>
+</article>
+</main>
+
+</div>
+</body>
+</html>

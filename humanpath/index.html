@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Humanpath · Jaeho Lee</title>
+<meta name="description" content="Walking routes scored block by block for sidewalk condition and safety, in Boston and Austin.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+<a class="name" href="../">Jaeho Lee</a>
+<nav aria-label="Sections">
+<!-- nav-writing --><a href="../#writing">Writing</a><!-- /nav-writing -->
+<a href="../#research">Research</a>
+<a href="../#projects">Projects</a>
+</nav>
+</header>
+
+<main>
+<article class="post">
+<header class="post-head">
+<h1>Humanpath</h1>
+<p class="subtitle">Walking directions that care what the sidewalk is like.</p>
+<p class="meta">Summer 2026 · <a href="https://huggingface.co/spaces/jlee0229/Humanpath">Try it</a> · <a href="https://github.com/jlee0229/Walkability">Code</a></p>
+</header>
+
+<div class="prose">
+<p>Map apps answer one question about a walk: how long is it? They don't tell you that the shortest route runs along a highway shoulder, or that the sidewalk gives out halfway down the block. Humanpath tries to answer the question a pedestrian actually has, which is whether the walk will be any good.</p>
+
+<p>You enter a start and an end, or use your current position, and Humanpath finds several walking routes. It scores each one block by block for surface type, safety, and overall walkability, then recommends one. It's made for phones and currently covers Boston and Austin.</p>
+
+<figure>
+<img src="../figures/humanpath.jpg" alt="Humanpath map of a walk from Massachusetts State House to Boston Public Garden, with a recommended route scoring 89 out of 100">
+<figcaption>A walk from the Massachusetts State House to the Public Garden. The recommended route scores 89 out of 100.</figcaption>
+</figure>
+
+<h2>Scoring a route</h2>
+<p>The obvious way to score a route is to average its blocks. The trouble is that a walk is only as good as its worst stretch. Ten pleasant blocks don't make up for one with no sidewalk next to fast traffic, but an average would let them. So in Humanpath, one bad stretch pulls a route's score down instead of getting averaged away.</p>
+<p>There's also a slider that trades distance for a better walk. Slide it one way and you get something close to the shortest route; slide it the other and Humanpath will send you a few blocks out of the way to avoid the bad ones.</p>
+</div>
+</article>
+</main>
+
+</div>
+</body>
+</html>
