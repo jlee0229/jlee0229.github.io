@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Humanpath · Jaeho Lee</title>
+<meta name="description" content="Walking routes scored block by block for sidewalk condition and safety, in Boston and Austin.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+<a class="name" href="../">Jaeho Lee</a>
+<nav aria-label="Sections">
+<!-- nav-writing --><a href="../#writing">Writing</a><!-- /nav-writing -->
+<a href="../#research">Research</a>
+<a href="../#projects">Projects</a>
+</nav>
+</header>
+
+<main>
+<article class="post">
+<header class="post-head">
+<h1>Humanpath</h1>
+<p class="subtitle">Walking directions that look for a good walk, not only a short one.</p>
+<p class="meta">Summer 2026 · <a href="https://huggingface.co/spaces/jlee0229/Humanpath">Try it</a> · <a href="https://github.com/jlee0229/Walkability">Code</a></p>
+</header>
+
+<div class="prose">
+<p>Most map apps find the shortest way to walk somewhere. Humanpath looks for the nicest way, and tells you how good the walk actually is.</p>
+
+<p>You enter a start and an end, or use your current position. Humanpath gives you a few routes, best walk first, each with a score from 0 to 100 and a note on its weakest stretch. It covers Boston and Austin, and on a phone you can install it like an app.</p>
+
+<figure>
+<img src="../figures/humanpath.jpg" alt="Humanpath map of a walk from Massachusetts State House to Boston Public Garden, with a recommended route scoring 89 out of 100">
+<figcaption>A walk from the Massachusetts State House to the Public Garden. The recommended route scores 89 out of 100.</figcaption>
+</figure>
+
+<h2>How a street gets scored</h2>
+<p>Every street and sidewalk in the city gets a score, built from the questions a person asks on foot. Will I be safe? That depends on how fast traffic moves next to you, and on whether shops, homes and parks keep people around. Will it be comfortable? That's the surface underfoot: its condition, material and width. Boston publishes its own sidewalk inspection records, and Humanpath uses them where they exist. Is it a real place to walk? A footpath or a quiet residential sidewalk is. The shoulder of a five-lane road isn't, even if the pavement is fine.</p>
+<p>The answers can't cancel each other out. A perfect brick sidewalk shouldn't rescue a walk beside a 40 mph road, so the weakest answer pulls the score down, the way one failing grade hurts a GPA more than one perfect grade helps it. The same rule applies along a route, so one bad stretch drags down the whole walk. When the data is unclear, the score errs low, because a walk that turns out worse than promised is worse than one that turns out better.</p>
+
+<h2>Picking a route</h2>
+<p>A slider sets how much extra distance you'll accept for a nicer walk. At zero you get the shortest path. Turned up, Humanpath treats an unpleasant block as if it were longer than it is, so the route drifts toward better streets as long as the detour stays reasonable. It also keeps you on one side of the street instead of zig-zagging, cuts needless crossings, and stays off the edges of freeways.</p>
+<p>The street map comes from OpenStreetMap.</p>
+</div>
+</article>
+</main>
+
+</div>
+</body>
+</html>
